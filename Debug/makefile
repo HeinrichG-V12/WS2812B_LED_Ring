@@ -34,34 +34,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := LED-Ring
+BUILD_ARTIFACT_NAME := WS2812B_LED_Ring
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-LED-Ring.elf \
+WS2812B_LED_Ring.elf \
 
 MAP_FILES += \
-LED-Ring.map \
+WS2812B_LED_Ring.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-LED-Ring.list \
+WS2812B_LED_Ring.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: LED-Ring.elf secondary-outputs
+main-build: WS2812B_LED_Ring.elf secondary-outputs
 
 # Tool invocations
-LED-Ring.elf LED-Ring.map: $(OBJS) $(USER_OBJS) /home/heinrich/STM32CubeIDE/workspace_1.19.0/LED-Ring/STM32F401CCUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "LED-Ring.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/home/heinrich/STM32CubeIDE/workspace_1.19.0/LED-Ring/STM32F401CCUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="LED-Ring.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+WS2812B_LED_Ring.elf WS2812B_LED_Ring.map: $(OBJS) $(USER_OBJS) D:\development\STM32CubeIDE\workspace_1.19.0\WS2812B_LED_Ring\STM32F401CCUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "WS2812B_LED_Ring.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\development\STM32CubeIDE\workspace_1.19.0\WS2812B_LED_Ring\STM32F401CCUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="WS2812B_LED_Ring.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -70,14 +70,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-LED-Ring.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "LED-Ring.list"
+WS2812B_LED_Ring.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "WS2812B_LED_Ring.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) LED-Ring.elf LED-Ring.list LED-Ring.map default.size.stdout
+	-$(RM) WS2812B_LED_Ring.elf WS2812B_LED_Ring.list WS2812B_LED_Ring.map default.size.stdout
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
